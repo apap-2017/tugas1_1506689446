@@ -82,7 +82,7 @@
 							<td th:text="${iterationStatus.count}">No. 1</td>
 							<td th:text="${penduduks.nik}">NIK</td>
 							<td th:text="${penduduks.nama}">Nama</td>
-							<td th:text="${penduduks.jenis_kelamin}">Jenis Kelamin</td>
+							<td th:text="${penduduks.jenis_kelamin} == '1' ? 'Perempuan' : 'Laki-laki'">Jenis Kelamin</td>
 						</tr>
 					</tbody>
 				</table>
