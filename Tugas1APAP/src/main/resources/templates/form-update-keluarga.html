@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Keluarga</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/datatables.min.css" />
+<script type="text/javascript" src="/js/datatables.min.js"></script>
+<style>
+.class-center {
+	margin: 0 auto;
+}
+
+.class-main {
+	padding-top: 25px;
+}
+</style>
+</head>
+
+<body>
+	<div th:replace="fragments/fragment :: header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="class-center col-lg-10">
+				<div class="class-center text-center col-lg-8">
+					<h2 class="page-header">Update Keluarga</h2>
+					<hr />
+				</div>
+				<div class="class-main col-lg-12">
+					<form th:action="'/keluarga/ubah/'+${keluarga.nomor_kk}"
+						method="post" th:object="${keluarga}">
+						<div class="form-group">
+							<input type="hidden" name="id_kelurahan_old"
+								th:value="${keluarga.id_kelurahan}" /> <input type="hidden"
+								name="id" th:value="${keluarga.id}" />
+						</div>
+						<div class="form-group">
+							<label for="nomor_kk">NKK</label> <input class="form-control" type="text"
+								name="nomor_kk" readonly="true" th:field="*{nomor_kk}"
+								th:value="${keluarga.nomor_kk}" />
+						</div>
+						<div class="form-group">
+							<label for="alamat">Alamat</label> <input class="form-control" type="text"
+								name="alamat" th:field="*{alamat}" th:value="${keluarga.alamat}" />
+						</div>
+						<div class="form-group">
+							<label for="RT">RT</label> <input class="form-control" type="text" name="RT"
+								th:field="*{RT}" th:value="${keluarga.RT}" />
+						</div>
+						<div class="form-group">
+							<label for="RW">RW</label> <input class="form-control" type="text" name="RW"
+								th:field="*{RW}" th:value="${keluarga.RW}" />
+						</div>
+						<div class="form-group">
+							<label for="id_kelurahan">Kelurahan</label>
+								<select name="id_kelurahan" th:field="*{id_kelurahan}"
+								th:value="${keluarga.id_kelurahan}" class="form-control">
+								<option th:each="kelurahan,iterationStatus: ${kels}"
+									th:value="${kelurahan.id}" th:text="${kelurahan.nama_kelurahan}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Kecamatan">Kecamatan</label> <select name="id_kecamatan" class="form-control">
+								<option th:each="kecs,iterationStatus: ${kecs}"
+									th:value="${kecs.id}" th:text="${kecs.nama_kecamatan}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Kota">Kota</label><select name="id_kota" class="form-control">
+								<option th:each="kots,iterationStatus: ${kots}"
+									th:value="${kots.id}" th:text="${kots.nama_kota}"></option>
+							</select>
+						</div>
+
+						<div>
+							<button class='btn btn-primary' type="submit" name="action" value="save">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+

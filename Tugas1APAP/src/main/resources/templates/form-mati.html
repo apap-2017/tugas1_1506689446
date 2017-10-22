@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Penduduk Wafat</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/submit-form.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/datatables.min.css" />
+<script type="text/javascript" src="/js/datatables.min.js"></script>
+</head>
+
+<body>
+	<p>wait...</p>
+	<form id="form" th:action="'/penduduk?nik=' + ${penduduk.nik}"
+		method="post">
+		<button hidden="hidden" class="btn btn-danger" type="submit" name="action"
+			value="save">Non Aktif</button>
+	</form>
+
+</body>
+
+</html>

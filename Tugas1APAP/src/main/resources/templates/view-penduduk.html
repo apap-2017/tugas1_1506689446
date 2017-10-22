@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Penduduk by NIK</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/datatables.min.css" />
+<script type="text/javascript" src="/js/datatables.min.js"></script>
+<style>
+.class-center {
+	margin: 0 auto;
+}
+
+.class-main {
+	margin: 0 auto;
+	text-align: left;
+}
+
+#id-main {
+	padding-bottom: 20px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="class-center text-center col-lg-10">
+				<div class="class-center col-lg-8">
+					<h2 th:text="'Lihat Data Penduduk : ' + ${penduduk.nik}">NIK</h2>
+					<hr />
+				</div>
+				<div class="row" id="id-main">
+					<div class="class-main col-lg-6">
+						<p th:text="'NIK = ' + ${penduduk.nik}">NIK Penduduk</p>
+						<p
+							th:text="'Tempat/Tanggal Lahir = ' + ${penduduk.tempat_lahir} + ', ' + ${penduduk.tanggal_lahir}">TTL
+							Penduduk</p>
+						<p th:text="'Alamat = ' + ${keluarga.alamat}">Alamat Penduduk</p>
+						<p th:text="'RT/RW = ' + ${keluarga.RT} + '/' + ${keluarga.RW}">RT/RW
+							Penduduk</p>
+						<p th:text="'Kelurahan/Desa = ' + ${kelurahan.nama_kelurahan}">Kelurahan
+							Penduduk</p>
+						<p th:text="'Kecamatan = ' + ${kecamatan.nama_kecamatan}">Kecamatan
+							Penduduk</p>
+						<p th:text="'Kota = ' + ${kota.nama_kota}">Kota Penduduk</p>
+					</div>
+					<div class="class-main col-lg-6">
+						<p th:text="'Nama = ' + ${penduduk.nama}">Nama Penduduk</p>
+						<p th:text="'Golongan Darah = ' + ${penduduk.golongan_darah}">Golongan
+							Darah Penduduk</p>
+						<p th:text="'Agama = ' + ${penduduk.agama}">Agama Penduduk</p>
+						<p
+							th:text="'Status Perkawinan = ' + ${penduduk.status_perkawinan}">Status
+							Perkawinan Penduduk</p>
+						<p th:text="'Pekerjaan = ' + ${penduduk.pekerjaan}">Pekerjaan
+							Penduduk</p>
+						<p
+							th:text="${penduduk.is_wni} == '1' ? 'Kewarganegaraan = WNI' : 'Kewarganegaraan = WNA'">Kewarganegaraan
+							Penduduk</p>
+						<p
+							th:text="${penduduk.is_wafat} == '1' ? 'Status Kematian = Wafat' : 'Status Kematian = Hidup'">Status
+							Kematian Penduduk</p>
+					</div>
+				</div>
+				<form th:action="'/penduduk/mati'" method="post">
+					<input type="hidden" name="nik"
+								th:value="${penduduk.nik}" />
+					<button th:unless="${penduduk.is_wafat} == '1'" class="btn btn-danger" type="submit">Non Aktif</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/datatables.min.css" />
+<script type="text/javascript" src="/js/datatables.min.js"></script>
+<style>
+.class-center {
+	margin: 0 auto;
+}
+.class-main {
+	padding-top: 25px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="class-center">
+				<h3 class="text-center" th:text="'PENDUDUK PADA KELURAHAN ' + ${namakelurahan} + ', KECAMATAN ' + ${namakecamatan} + ', ' + ${namakota} ">Penduduk
+					pada kecamatan</h3>
+				<div class="class-main row container-fluid">
+					<div class="col-lg-6">
+						<h4 class="text-center">Penduduk Tertua</h4>
+						<table id="selectPendudukTertua" class="table"
+							style="text-align: center;">
+							<thead>
+								<tr>
+									<th class="text-center">NIK</th>
+									<th class="text-center">NAMA</th>
+									<th class="text-center">Tanggal Lahir</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-center" th:text="${pendudukTua.nik}">NIK</td>
+									<td class="text-center" th:text="${pendudukTua.nama}">Nama</td>
+									<td class="text-center" th:text="${pendudukTua.tanggal_lahir}">Tanggal lahir</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-lg-6">
+						<h4 class="text-center">Penduduk Termuda</h4>
+						<table id="selectPendudukTermuda" class="table"
+							style="text-align: center;">
+							<thead>
+								<tr>
+									<th class="text-center">NIK</th>
+									<th class="text-center">NAMA</th>
+									<th class="text-center">Tanggal Lahir</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-center" th:text="${pendudukMuda.nik}">NIK</td>
+									<td class="text-center" th:text="${pendudukMuda.nama}">Nama</td>
+									<td class="text-center" th:text="${pendudukMuda.tanggal_lahir}">Tanggal Lahir</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<hr />
+				<table id="selectPenduduk" class="display"
+					style="text-align: center;">
+					<thead>
+						<tr>
+							<th class="text-center">No.</th>
+							<th class="text-center">NIK</th>
+							<th class="text-center">NAMA</th>
+							<th class="text-center">Jenis Kelamin</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="penduduks,iterationStatus: ${penduduks}"
+							th:class="${iterationStatus.odd}?'odd'">
+							<td th:text="${iterationStatus.count}">No. 1</td>
+							<td th:text="${penduduks.nik}">NIK</td>
+							<td th:text="${penduduks.nama}">Nama</td>
+							<td th:text="${penduduks.jenis_kelamin}">Jenis Kelamin</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+       	$(document).ready( function () {
+       	    $('#selectPenduduk').DataTable();
+       	} );
+       	</script>
+</body>
+</html>
